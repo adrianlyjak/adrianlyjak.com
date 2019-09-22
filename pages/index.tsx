@@ -1,5 +1,13 @@
-import React from 'react'
+import React, { Children } from 'react'
 import Head from 'next/head'
+import marked from 'marked'
+const testpost = require('../posts/testpost.md')
+
+console.log({testpost})
+const Markdown = ({children}: { children: string }) => {
+  const content = marked(children);
+  return <div dangerouslySetInnerHTML={{__html: content}} />;
+}
 
 const Home = () => (
   <div>
@@ -14,6 +22,7 @@ const Home = () => (
       <li className="nav-item">one</li>
       <li className="nav-item">two</li>
     </ul>
+    <Markdown children={testpost.default} />
   </div>
 )
 
