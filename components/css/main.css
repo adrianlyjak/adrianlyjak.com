@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  @apply bg-gray-800;
+}
+
+:root {
+  --text-serif: "Playfair Display", sans-serif
+}
+
+p, a, pre, body {
+  @apply text-gray-500;
+}
+p, ul, ol {
+  @apply font-serif tracking-wide;
+}
+p {
+  @apply leading-loose text-justify;
+  text-indent: 2em;
+  
+}
+p a {
+  @apply underline text-teal-300;
+}
+p a:hover {
+  @apply no-underline;
+}
+
+h1, h2 {
+  text-shadow: 0px 3px 1px rgba(0, 0, 0, 1);
+}
+h3, h4 {
+  text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.6);
+}
+h1 { @apply text-5xl text-gray-200; }
+h2 { @apply text-4xl text-gray-200; }
+h3 { @apply text-3xl text-gray-200; }
+h4 { @apply text-2xl text-gray-300; }
+h5 { @apply text-xl text-gray-400; }
+h6 { @apply text-lg text-gray-500; }
+
+ul, ol {
+  @apply pl-4;
+}
+ul > li {
+  @apply list-disc;
+}
+ol > li {
+  @apply list-decimal;
+}
+
+em {
+  @apply text-gray-400;
+}
+
+strong, em strong, strong em {
+  @apply text-gray-300;
+}
+
+pre code {
+  border-radius: 0.25em;
+  @apply bg-gray-900 p-4 my-4 block font-mono;
+}
+
+.app-container {
+}

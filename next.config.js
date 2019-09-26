@@ -1,4 +1,6 @@
-module.exports = {
+const withCSS = require('@zeit/next-css')
+
+module.exports = withCSS({
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.module.rules.push({
         test: /\.md$/,
@@ -11,4 +13,5 @@ module.exports = {
     // Important: return the modified config
     return config
   },
-}
+});
+

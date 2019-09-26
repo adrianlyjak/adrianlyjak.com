@@ -1,29 +1,53 @@
-import React, { Children } from 'react'
-import Head from 'next/head'
-import marked from 'marked'
-const testpost = require('../posts/testpost.md')
+import React from "react"
+import Head from "next/head"
+import marked from "marked"
+import "../components/css/highlight"
+import { App } from "../components/app"
 
-console.log({testpost})
-const Markdown = ({children}: { children: string }) => {
-  const content = marked(children);
-  return <div dangerouslySetInnerHTML={{__html: content}} />;
+import * as hljs from 'highlight.js';
+import javascript from 'highlight.js/lib/languages/javascript';
+
+class Markdown extends React.Component<{ children: string }> {
+  componentDidMount() {
+    hljs.registerLanguage('javascript', javascript)
+    hljs.initHighlighting()
+  }
+  render() {
+    const content = marked(this.props.children);
+    // @ts-ignore
+    return <div onClick={() => window && window.rotateTheme() }dangerouslySetInnerHTML={{ __html: content }} />;
+  }
+}
+
+class RemoteMarkdown extends React.Component<{ path: string }, {content: string | null}> {
+  state = {
+    content: null
+  }
+  componentDidMount() {
+    fetch(this.props.path)
+    .then(x => x.text())
+    .then(content => this.setState({ content }))
+  }
+
+  render() {
+
+    if (!this.state.content) {
+      return <div>loading</div>
+    } else {
+      return <Markdown>{this.state.content}</Markdown>
+    }
+
+  }
 }
 
 const Home = () => (
-  <div>
+  <App>
     <Head>
       <title>Home</title>
-      <style></style>
     </Head>
-    <pre><code>
-      /** I am a teapot. Here is my handle. Here is my spout. */
-    </code></pre>
-    <ul className="nav">
-      <li className="nav-item">one</li>
-      <li className="nav-item">two</li>
-    </ul>
-    <Markdown children={testpost.default} />
-  </div>
+    <RemoteMarkdown path="/static/posts/testpost.md"/>
+  </App>
+
 )
 
 export default Home
