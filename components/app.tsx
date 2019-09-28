@@ -2,6 +2,7 @@ import React from "react"
 import Head from "next/head"
 import { useRouter } from 'next/router'
 import "./css/main.css"
+import Logo from "./Logo"
 
 export function App ({ children }) {
 
@@ -12,6 +13,7 @@ export function App ({ children }) {
       </Head>
       <AppContainer>
         <Nav>
+          <NavItem><Logo /></NavItem>
           <NavItem><NavAnchor path="/">Home</NavAnchor></NavItem>
           <NavItem><NavAnchor path="/game">One</NavAnchor></NavItem>
           <NavItem><NavAnchor path="/game">Two</NavAnchor></NavItem>
