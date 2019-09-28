@@ -9,10 +9,17 @@ export interface PostRef {
   labels: string[]
 }
 
+export type MaybePostProps = PostProps | PostNotFound
+
+export interface PostNotFound { 
+  pathname?: string,
+  notFound: true
+}
 export interface PostProps {
   post: PostRef
   content: string
 }
+
 export interface PostListProps {
   labels: string[],
   offset: number,
@@ -44,11 +51,11 @@ export async function loadPostsFromQuery(context: NextPageContext) {
   }
 }
 
-export async function loadPostFromQuery(context: NextPageContext) {
+export async function loadPostFromQuery(context: NextPageContext): Promise<MaybePostProps> {
   const { postId } = context.query
   let id = Array.isArray(postId) ? postId[0] : postId
   if (!postId) {
-    throw new Error('no postId specified in query')
+    return { notFound: true, pathname: id }
   } else {
     const mod = (await import("../static/posts/" + postId)).default as string
     const post = (await import ("../db/posts")).default.find(x => x.filename === postId)
