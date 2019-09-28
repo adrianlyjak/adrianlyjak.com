@@ -1,5 +1,6 @@
 import React from "react"
 import { NextPageContext } from "next"
+import Link from "next/link"
 
 export interface PostRef {
   filename: string,
@@ -66,7 +67,7 @@ export async function loadPostFromQuery(context: NextPageContext): Promise<Maybe
 
 class PostList extends React.Component<{ list: PostRef[] }> {
   render() {
-    return this.props.list.map(x => <div><a href={"/posts/" + x.filename}>{x.title}</a></div>)
+    return this.props.list.map(x => <div><Link href={"/posts/" + x.filename}>{x.title}</Link></div>)
   }
 }
 
@@ -94,10 +95,10 @@ export class PostPaginator extends React.PureComponent<PostListProps> {
       <PostList list={this.props.posts} />
       <div role="navigation">
         {
-          prev ? <a href={prev}>back</a> : null
+          prev ? <Link href={prev}>back</Link> : null
         }
         {
-          next ? <a href={next}>next</a> : null
+          next ? <Link href={next}>next</Link> : null
         }
       </div>
     </div>

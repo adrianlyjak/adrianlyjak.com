@@ -3,6 +3,7 @@ import Head from "next/head"
 import { useRouter } from 'next/router'
 import "./css/main.css"
 import Logo from "./Logo"
+import Link from "next/link"
 
 export function App ({ children }) {
 
@@ -47,8 +48,13 @@ function NavItem({ children }) {
 function NavAnchor({ children, path }: { children: any, path: string }) {
   const router = useRouter();
   const active = path == router.pathname;
-  return <a 
-  href={path}
-  className={`cursor-pointer inline-block m-1 p-3 px-2 border-t hover:border-t ${active ? "border-gray-500" : "border-transparent hover:border-gray-600"}
-  `}>{children}</a>
+  return <Link 
+    href={path}
+  >
+    <span 
+      className={`cursor-pointer inline-block m-1 p-3 px-2 border-t hover:border-t ${active ? "border-gray-500" : "border-transparent hover:border-gray-600"}`}
+    >
+    {children}
+    </span>
+  </Link>
 }
