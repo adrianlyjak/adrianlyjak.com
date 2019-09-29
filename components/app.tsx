@@ -1,7 +1,7 @@
+import "./css/main.css"
 import React from "react"
 import Head from "next/head"
 import { useRouter } from 'next/router'
-import "./css/main.css"
 import Logo from "./Logo"
 
 export function App ({ children }) {
@@ -33,7 +33,7 @@ function AppContent({ children }) {
 }
 
 function Nav({ children }) {
-  return <div className="mt-4"><ul className="d-flex mt-4 font-sans flex-row list-none justify-around border-t border-gray-700" role="navigation">
+  return <div className="mt-4"><ul className="d-flex mt-4 font-sans flex-row list-none justify-around" role="navigation">
     {children}
   </ul></div>
 }

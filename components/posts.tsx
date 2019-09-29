@@ -5,6 +5,7 @@ import { NextPageContext } from "next"
 export interface PostRef {
   id: string,
   title: string,
+  excerpt?: string,
   date: Date,
   lastUpdate: Date,
   labels: string[]
