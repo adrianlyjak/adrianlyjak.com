@@ -3,7 +3,7 @@ import { NextPageContext } from "next"
 
 
 export interface PostRef {
-  filename: string,
+  id: string,
   title: string,
   date: Date,
   lastUpdate: Date,
@@ -58,8 +58,8 @@ export async function loadPostFromQuery(context: NextPageContext): Promise<Maybe
   if (!postId) {
     return { notFound: true, pathname: id }
   } else {
-    const mod = (await import("../static/posts/" + postId)).default as string
-    const post = (await import ("../db/posts")).default.find(x => x.filename === postId)
+    const mod = (await import("../static/posts/" + postId + ".md")).default as string
+    const post = (await import ("../db/posts")).default.find(x => x.id === postId)
     return { content: mod, post: post }
   }
 
@@ -67,7 +67,7 @@ export async function loadPostFromQuery(context: NextPageContext): Promise<Maybe
 
 class PostList extends React.Component<{ list: PostRef[] }> {
   render() {
-    return this.props.list.map(x => <div><a href={"/posts/" + x.filename}>{x.title}</a></div>)
+    return this.props.list.map(x => <div><a href={"/post/" + x.id}>{x.title}</a></div>)
   }
 }
 

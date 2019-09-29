@@ -1,6 +1,6 @@
 import React from "react"
-import { PostListProps, loadPostsFromQuery, PostPaginator } from "../../components/posts"
-import { App } from "../../components/app"
+import { PostListProps, loadPostsFromQuery, PostPaginator } from "../components/posts"
+import { App } from "../components/app"
 import { NextPageContext } from "next"
 
 export default class PostsController extends React.Component<PostListProps> {
