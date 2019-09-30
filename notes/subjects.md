@@ -23,3 +23,11 @@ What are good abstractions to deal with parallelism, vs concurrency
 
 
 #### mutability vs immutability
+
+#### what is HTTP
+
+#### Lower level internet stuff. TCP, packets, DNS
+
+#### Making good decisions
+
+#### Writing a text editor

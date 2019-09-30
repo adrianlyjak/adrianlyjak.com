@@ -54,12 +54,7 @@ export class Markdown extends React.Component<{ children: string }> {
     this.setContent();
   }
 
-  content: string;
-  constructor(props: { children: string}) {
-    super(props);
-    this.content = marked(this.props.children);
-  }
-
+  
   componentDidUpdate(prevProp: { children: string }) {
     if (this.props.children !== prevProp.children) {
       this.setContent()
@@ -77,12 +72,14 @@ export class Markdown extends React.Component<{ children: string }> {
 
   el: HTMLElement;
   setRef = (el: HTMLElement): void => {
-    this.el = el;
-    this.setContent()
+    if (el !== this.el) {
+      this.el = el;
+      this.setContent();
+    }
   }
 
   render() {
-    return <div ref={this.setRef} dangerouslySetInnerHTML={{ __html: this.content }} />;
+    return <div ref={this.setRef} />;
   }
 }
 
