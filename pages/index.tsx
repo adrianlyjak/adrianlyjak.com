@@ -1,6 +1,5 @@
 import React from "react"
 import Head from "next/head"
-import "../components/css/highlight"
 import { App } from "../components/app"
 import { PostListProps, PostPaginator, loadPostsFromQuery } from "../components/posts"
 import { NextPageContext } from "next"
